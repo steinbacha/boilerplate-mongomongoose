@@ -4,6 +4,15 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
+let personSchema = new mongoose.Schema({
+  name: {type: String},
+  age: {type: Number},
+  favoriteFoods: {type: Array}
+});
+
+const Person = mongoose.model("Person", personSchema);
+
+/*
 const someFunc = function(done) {
   //... do something (risky) ...
 
@@ -11,7 +20,9 @@ const someFunc = function(done) {
     name: {type: String},
     age: {type: Number},
     favoriteFoods: {type: Array}
-  })
+  });
+
+  const Person = mongoose.model("Person", personSchema);
 
   module.exports = mongoose.model('Person', personSchema) 
   
@@ -33,10 +44,9 @@ const someFunc = function(done) {
     })
     if (error) return done(error);
     done(null, result);
-  };
+  }; 
+  */
   
-    
-let Person;
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
