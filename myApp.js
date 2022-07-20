@@ -4,52 +4,25 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
+
 let personSchema = new mongoose.Schema({
   name: {type: String},
   age: {type: Number},
   favoriteFoods: {type: Array}
 });
 
-const Person = mongoose.model("Person", personSchema);
-
-/*
-const someFunc = function(done) {
-  //... do something (risky) ...
-
-  let personSchema = new mongoose.Schema({
-    name: {type: String},
-    age: {type: Number},
-    favoriteFoods: {type: Array}
-  });
-
-  const Person = mongoose.model("Person", personSchema);
-
-  module.exports = mongoose.model('Person', personSchema) 
-  
-  let PersonModel = require('./person')
-
-  let person = new PersonModel({
-    name: 'Adam',
-    age: 28,
-    favoriteFoods: 'ice cream'
-  })
-
-  person.save()
-    .then(doc => {
-      console.log(doc)
-    })
-
-    .catch(err => {
-      console.error(err)
-    })
-    if (error) return done(error);
-    done(null, result);
-  }; 
-  */
-  
+const Person = mongoose.model("Person", personSchema);  
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  let adam = new Person({name: 'Adam', age: 28, favoriteFoods: ['sushi']})
+  
+  adam.save((error, data) => {
+    if(error){
+      console.log(error)
+    }else{
+      done(null, data);  
+    }
+  })
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
