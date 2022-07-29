@@ -27,11 +27,11 @@ const createAndSavePerson = (done) => {
   })
 };
 
-const createManyPeople = (arrayOfPeople, done) => {
+const createManyPeople = (done) => {
 
-  let peeps = [{name: 'Jon', age: 38, favoriteFoods: ['steak']}, {name: 'Riley', age: 26, favoriteFoods: ['apples']}]
+  let arrayOfPeople = [{name: 'Jon', age: 38, favoriteFoods: ['steak']}, {name: 'Riley', age: 26, favoriteFoods: ['apples']}]
   
-  peeps.create((error, data) => {
+  arrayOfPeople.create((error, data) => {
     if(error){
       consolog.log(error)
     }else{
