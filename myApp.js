@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('mongodb');
+const { setInternalBufferSize } = require('bson');
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -27,7 +28,16 @@ const createAndSavePerson = (done) => {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+
+  let peeps = [{name: 'Jon', age: 38, favoriteFoods: ['steak']}, {name: 'Riley', age: 26, favoriteFoods: ['apples']}]
+  
+  peeps.create((error, data) => {
+    if(error){
+      consolog.log(error)
+    }else{
+      done(null, data);
+    }
+  })
 };
 
 const findPeopleByName = (personName, done) => {
