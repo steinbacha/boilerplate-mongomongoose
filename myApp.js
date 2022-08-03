@@ -69,16 +69,11 @@ const findEditThenSave = (personId, done) => {
   
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
-  Person.findOneAndUpdate({name: personName}, {age: ageToSet}, {new: true, runValidators: true})
-  
-  .then(person => {console.log(person)})
-  .catch(error => {console.log(error)})
-  
-  person,save((error, updatedPerson) => {
-    if(error) return console.log(error)
-    done(null, updatedPerson)
-  })
-  }
+  Person.findOneAndUpdate({name: personName}, {age: ageToSet}, {new: true, runValidators: true}, (err, updatedDoc) => {
+    if(error) return console.log(error);  
+    done(null, updatedDoc);
+    })
+  };
   /*
   (error, person) => {
     if(error) return console.log(error)
