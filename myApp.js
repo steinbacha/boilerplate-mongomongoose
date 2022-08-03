@@ -75,9 +75,8 @@ const findAndUpdate = (personName, done) => {
     })
   };
 
-
 const removeById = (personId, done) => {
-  Person.findOneAndRemove({_id: personId}, {new: true, runValidators: true}, (err, data) => {
+  Person.findByIdAndRemove((personId), {new: true, runValidators: true}, (err, data) => {
     if(err) return console.log(err);
     done(null, data)
   })
