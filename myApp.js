@@ -73,7 +73,7 @@ const findAndUpdate = (personName, done) => {
   
   .then(person => {console.log(person)})
   .catch(error => {console.log(error)})
-  done(null, updatedPerson)
+  done(null, data)
   }
   /*
   (error, person) => {
