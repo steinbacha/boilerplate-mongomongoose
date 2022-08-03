@@ -53,13 +53,24 @@ const findPersonById = (personId, done) => {
 };
 
 const findEditThenSave = (personId, done) => {
-  Person.findById({_id: personId}, (error, data) => {
     const foodToAdd = "hamburger";
-    Person.favoriteFoods.push(foodToAdd);
-    Person.save(error)
-  });
+  
+    Person.findById({_id: personId}, (error, data) => {
+    if(error){
+      console.log(error)
+    }else{
+    result.favoriteFoods.push(foodToAdd)
+    result.save((error, updatedRecord) => {
+      if(error){
+        console.log(error)
+      }else {
+        done(null, updatedRecord)
+        }
+      })
+    }
+  })
 };
-
+  
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
