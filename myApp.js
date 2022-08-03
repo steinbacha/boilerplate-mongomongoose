@@ -74,24 +74,13 @@ const findAndUpdate = (personName, done) => {
     done(null, updatedDoc);
     })
   };
-  /*
-  (error, person) => {
-    if(error) return console.log(error)
 
-    person.save((error, updatedPerson) => {
-      if(error) return console.log(error)
-      done(null, updatedPerson)
-    })
-  })
-};
-*/
 
 const removeById = (personId, done) => {
   Person.findOneAndRemove({_id: personId}, {new: true, runValidators: true}, (err, data) => {
     if(err) return console.log(err);
     done(null, data)
   })
-  done(null /*, data*/);
 };
 
 const removeManyPeople = (done) => {
